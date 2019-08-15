@@ -24,10 +24,10 @@ def hashPassword(pw):
     h = blake2b(salt=s, key=k)
     try:
         h.update(bytes(pw, 'UTF-8'))
-        hashedPW = h.digest()
     except TypeError:
         return ()
     else:
+        hashedPW = h.digest()
         return (hashedPW, s)
 
 def testPassword(pw, hash, salt):
@@ -36,10 +36,10 @@ def testPassword(pw, hash, salt):
     h = blake2b(salt=s, key=k)
     try:
         h.update(bytes(pw, 'UTF-8'))
-        hashedPW = h.digest()
     except TypeError:
         return False
     else:
+        hashedPW = h.digest()
         return hash == hashedPW
 
 def validatePassword(pw):
@@ -53,9 +53,9 @@ def validatePassword(pw):
             )
 
 def addUser(id, pw):
+    h, s = hashPassword(pw)
     with shelve.open(pwdb) as db:
         try:
-            h, s = hashPassword(pw)
             db[str(id)] = (h, s)
         except (TypeError, KeyError):
             return False
