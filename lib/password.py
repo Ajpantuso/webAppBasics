@@ -22,12 +22,16 @@ def hashPassword(pw):
     s = urandom(blake2b.SALT_SIZE)
     k = retrieveKey()
     h = blake2b(salt=s, key=k)
+    iterations = 1000000
     try:
         h.update(bytes(pw, 'UTF-8'))
     except TypeError:
         return ()
     else:
         hashedPW = h.digest()
+        for i in range(iterations):
+            h.update(hashedPW)
+            hashedPW = h.digest()
         return (hashedPW, s)
 
 def testPassword(pw, hash, salt):
@@ -61,3 +65,5 @@ def addUser(id, pw):
             return False
         else:
             return True
+
+print(hashPassword("HolyFuckingShit!:# WARNING: "))
