@@ -18,7 +18,7 @@ class PersistenceServer(object):
         serviceName = cls.__name__
         servicePath = r'/' + serviceName + r'/.*'
         self.services[serviceName] = (cls, re.compile(servicePath))
-        self.cache[serviceName] = []
+        self.cache[serviceName] = {}
 
     def getCache(self):
         return self.cache
@@ -53,9 +53,9 @@ class PersistenceHandler(BaseHTTPRequestHandler):
 
     def getByID(self, service, id):
         result = None
-        for obj in self.cache[service]:
-            if obj.id == id:
-                result = obj
+        for objID in self.cache[service]:
+            if objID == id:
+                result = self.cache[service][objID]
                 break
         if result:
             return result.encode()
@@ -63,7 +63,7 @@ class PersistenceHandler(BaseHTTPRequestHandler):
 
     def getAll(self, service):
         objs = []
-        for obj in self.cache[service]:
+        for _, obj in self.cache[service].items():
             objs.append(obj.encode())
         return objs
 
@@ -77,12 +77,15 @@ class PersistenceHandler(BaseHTTPRequestHandler):
     def postNew(self, cls, service):
         content_length = int(self.headers['Content-Length'])
         data = self.rfile.read(content_length)
-        obj = json.loads(data, object_hook=cls.decode)
+        try:
+            obj = json.loads(data, object_hook=cls.decode)
+        except json.decoder.JSONDecodeError as e:
+            return HTTPStatus.BAD_REQUEST
         if self.getByID(service, obj.id):
             return HTTPStatus.BAD_REQUEST
         else:
             objs = self.cache[service]
-            objs.append(obj)
+            objs[str(obj.id)] = obj
             self.cache[service] = objs
             return HTTPStatus.OK
 
