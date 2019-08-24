@@ -9,8 +9,8 @@ applications.
 
 1. Demonstrate socket programming
 2. Demonstrate client/Server Programming over TCP
-3. Demonstrate the use of SSL/TLS encryption
-4. Demonstrate the use of parallelism in servers
+3. Demonstrate the use of parallelism in servers
+4. Demonstrate the use of SSL/TLS encryption
 5. Demonstrate a simple HTTP server
 6. Demonstrate CSS/JS and templates
 7. Demonstrate middleware/logging
