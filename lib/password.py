@@ -65,5 +65,3 @@ def addUser(id, pw):
             return False
         else:
             return True
-
-print(hashPassword("HolyFuckingShit!:# WARNING: "))
