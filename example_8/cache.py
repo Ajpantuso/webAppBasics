@@ -74,6 +74,8 @@ class PersistenceHandler(BaseHTTPRequestHandler):
             if p.match(self.path):
                 status = self.postNew(c, s)
         self.send_response(status)
+        self.send_header('Content-type', 'text/html')
+        self.end_headers()
 
     def postNew(self, cls, service):
         content_length = int(self.headers['Content-Length'])
@@ -96,7 +98,7 @@ with shelve.open('cache') as cache:
     ps.addService(models.Company)
     server_address = ('127.0.0.1', 19730)
     ctx = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
-    ctx.load_cert_chain(certfile='ex7cert.pem',keyfile='ex7key.key')
+    ctx.load_cert_chain(certfile='ex8cert.pem',keyfile='ex8key.key')
     with ThreadingHTTPServer(server_address, ps) as httpd:
         with ctx.wrap_socket(httpd.socket, server_side=True) as sock:
             httpd.socket = sock
