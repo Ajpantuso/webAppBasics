@@ -1,4 +1,5 @@
 from functools import partial
+from http.server import BaseHTTPRequestHandler
 import re
 
 class Router(object):
