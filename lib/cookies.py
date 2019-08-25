@@ -8,6 +8,6 @@ def cookieHandler(caller, next):
     except KeyError:
         pass
     except Exception as e:
-        print(e)
-    print(c)
+        pass
+    caller.cookies = c
     next(caller)

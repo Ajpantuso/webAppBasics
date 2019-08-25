@@ -1,5 +1,7 @@
+from functools import partial
 from http.server import BaseHTTPRequestHandler
 from http.server import ThreadingHTTPServer
+import cookies
 import logger
 import re
 import staticfile
@@ -72,12 +74,10 @@ class HandlerWithRoutes(BaseHTTPRequestHandler):
         return staticfile.notFoundHandler(self)
 
     def applyMiddleware(self, h):
-        if len(self.middleware) == 0:
-            h(self)
-        else:
-            for mw in self.middleware:
-                h = mw(self, h)
-        return h
+        chain = h
+        for mw in self.middleware:
+            chain = partial(mw, next=chain)
+        return chain(self)
 
 server_address = ('127.0.0.1', 8000)
 
@@ -88,5 +88,6 @@ r.addRoute('GET', r'/favicon.ico', h1)
 h2 = staticfile.StaticHandler('C:\\Users\\Andrew\\Documents\\webAppBasics')
 r.addRoute('GET', r'/static.*', h2)
 r.addMiddleware(logger.logHandler)
+r.addMiddleware(cookies.cookieHandler)
 httpd = ThreadingHTTPServer(server_address, r)
 httpd.serve_forever()

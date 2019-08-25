@@ -22,7 +22,10 @@ class StaticHandler(object):
                            ,"application/javascript"
                            ,"application/json"
                            ]
-
+        try:
+            print(caller.cookies.output())
+        except:
+            pass
         path = urlsplit(caller.path)[2].lstrip('/')
         path = os.path.join(self.baseDir, path)
         if path.endswith('/'):
