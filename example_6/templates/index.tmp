@@ -1,0 +1,17 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>$title</title>
+  <meta name="description" content="$description">
+  <meta name="author" content="$author">
+  <link  rel="stylesheet" href="./static/css/main.css" type="text/css">
+  <script type="text/javascript" src="../static/js/main.js"></script>
+</head>
+<body>
+  h1 Welcome to the Home Page!
+  p We have lots of fun here
+  <div id="click">Amazement Awaits</div>
+</body>
+</html>
