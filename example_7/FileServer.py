@@ -6,6 +6,7 @@ from router import Router
 import ssl
 
 def myHandler(caller):
+    print(caller.cookies)
     print(caller.request)
     caller.send_response(HTTPStatus.OK)
     caller.send_header("Content-Type", "text/html")
