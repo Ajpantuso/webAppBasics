@@ -15,9 +15,9 @@ except:
     logger.setLevel('INFO')
 
 def logHandler(caller, next):
-
     logger.info("Started processing request for {}".format(caller.path))
     startTime = time()
     next(caller)
     endTime = time()
-    logger.info("Completed processing request for {} in {}ms".format(caller.path, (endTime - startTime)*1000))
+    logger.info("Completed processing request for {} in {}ms".format(
+        caller.path, (endTime - startTime)*1000))
