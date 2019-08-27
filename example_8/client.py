@@ -9,13 +9,15 @@ context.check_hostname = False
 context.load_verify_locations('ex8cert.pem')
 
 conn = http.client.HTTPSConnection(host="localhost", port=19730, context=context)
+#Create list of users to add to the cache
 users = [
     models.User("Bob", "Bobman", "Bobber"),
     models.User("John", "Johnman", "Johnner"),
     models.User("Bill", "Billman", "Biller")
     ]
 for u in users:
-    conn.request("POST", "/User/", body=json.dumps(u.encode()))
+    #For each user submit a POST request in json format
+    conn.request("POST", "/User/", body=json.dumps(u, cls=models.UserEncoder))
     res = conn.getresponse()
     print(res.status)
 

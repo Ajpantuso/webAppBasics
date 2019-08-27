@@ -16,5 +16,5 @@ applications.
 7. Demonstrate middleware/logging
 8. Demonstrate a basic backend for caching data
 9. Demonstrate simple authentication/password encryption
-10. Integrate 5 - 10 as a full stack web application
+10. Integrate 5 - 9 as a full stack web application
 11. Introduce more advanced problems such as encoding/minification/compression

@@ -1,3 +1,4 @@
+from json import JSONEncoder
 from uuid import uuid4
 
 class CacheModel(object):
@@ -21,6 +22,13 @@ class CacheModel(object):
         d['id'] = d.pop('_id')
         return d
 
+class CacheModelEncoder(JSONEncoder):
+
+     def default(self, obj):
+        d = obj.__dict__
+        d['id'] = d.pop('_id')
+        return d
+
 class User(CacheModel):
 
     def __init__(self, firstName, lastName, role, id=None):
@@ -29,9 +37,15 @@ class User(CacheModel):
         self.role = role
         super().__init__(id)
 
+class UserEncoder(CacheModelEncoder):
+    pass
+
 class Company(CacheModel):
 
     def __init__(self, name, industry, id=None):
         self.name = name
         self.industry = industry
         super().__init__(id)
+
+class CompanyEncoder(CacheModelEncoder):
+    pass
