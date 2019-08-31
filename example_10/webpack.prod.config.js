@@ -10,8 +10,9 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'dist'),
     publicPath: '/',
-    filename: '[name].js'
+    filename: 'bundle.js'
   },
+  mode: 'production',
   target: 'web',
   devtool: 'source-map',
   // Webpack 4 does not have a CSS minifier, although
@@ -21,9 +22,18 @@ module.exports = {
       new UglifyJsPlugin({
         cache: true,
         parallel: true,
-        sourceMap: true // set to true if you want JS source maps
+        sourceMap: true, // set to true if you want JS source maps
+        uglifyOptions: {
+          output: {
+            comments: false,
+          },
+        },
       }),
-      new OptimizeCSSAssetsPlugin({})
+      new OptimizeCSSAssetsPlugin({
+        cssProcessorPluginOptions: {
+          preset: ['default', { discardComments: { removeAll: true } }],
+        }
+      })
     ]
   },
   module: {
@@ -48,8 +58,39 @@ module.exports = {
         ]
       },
       {
+        test: /\.pug$/,
+        use: [
+          {
+            loader: "pug-loader",
+          }
+        ]
+      },
+      {
+        test: /\.s[ac]ss$/i,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "[name].css"
+            }
+          },
+          {
+            loader: "extract-loader"
+          },
+          {
+            loader: "css-loader?-url"
+          },
+          {
+            loader: "postcss-loader"
+          },
+          {
+            loader: "sass-loader"
+          }
+        ]
+      },
+      {
         // Loads images into CSS and Javascript files
-        test: /\.jpg$/,
+        test: /\.(png|svg|jpg|gif)$/,
         use: [{loader: "url-loader"}]
       },
       {
@@ -64,6 +105,9 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: "[name].css",
       chunkFilename: "[id].css"
+    }),
+    new HtmlWebPackPlugin({
+      template: './src/views/index.pug'
     })
   ]
 }

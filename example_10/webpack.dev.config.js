@@ -8,7 +8,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'dist'),
     publicPath: '/',
-    filename: '[name].js'
+    filename: 'bundle.js'
   },
   mode: 'development',
   target: 'web',
@@ -52,7 +52,33 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [ 'style-loader', 'css-loader' ]
+        use: [
+          'style-loader',
+          'css-loader'
+        ]
+      },
+      {
+        test: /\.s[ac]ss$/i,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "[name].css"
+            }
+          },
+          {
+            loader: "extract-loader"
+          },
+          {
+            loader: "css-loader?-url"
+          },
+          {
+            loader: "postcss-loader"
+          },
+          {
+            loader: "sass-loader"
+          }
+        ]
       },
       {
        test: /\.(png|svg|jpg|gif)$/,
