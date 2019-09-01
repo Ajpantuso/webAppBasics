@@ -14,6 +14,8 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         message = input('>>> ')
         if not message:
             break
+        # New lines usually require special handling as they are used to
+        # signal the end of a message or when to flush the buffer
         if not message.endswith('\n'):
             message += '\n'
         s.sendall(message.encode('UTF-8'))

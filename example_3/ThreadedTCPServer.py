@@ -2,6 +2,9 @@ from socketserver import ThreadingTCPServer, StreamRequestHandler
 import argparse
 import threading
 
+# Now that we have the concept of a server we can also utilize the concept of
+# handlers. Handlers can encapsulate processing logic seperate from the server
+# logic
 class CustomThreadedTCPHandler(StreamRequestHandler):
 
     def handle(self):

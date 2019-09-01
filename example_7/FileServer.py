@@ -5,6 +5,7 @@ import logger
 from router import Router
 import ssl
 
+# Custom handler to test that middleware works as expected
 def myHandler(caller):
     print(caller.cookies)
     print(caller.request)
@@ -18,6 +19,7 @@ server_address = ('127.0.0.1', 19730)
 ctx = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
 ctx.load_cert_chain(certfile='ex7cert.pem',keyfile='ex7key.key')
 
+#Custom class used for request routing and applying middleware
 r = Router()
 r.addMiddleware(logger.logHandler)
 r.addMiddleware(cookies.cookieHandler)

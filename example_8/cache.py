@@ -19,7 +19,8 @@ class PersistenceServer(object):
         serviceName = cls.__name__
         servicePath = r'/' + serviceName + r'/.*'
         self.services[serviceName] = (cls, re.compile(servicePath))
-        self.cache[serviceName] = {}
+        if serviceName not in self.cache:
+            self.cache[serviceName] = {}
 
     def getCache(self):
         return self.cache
