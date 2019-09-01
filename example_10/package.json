@@ -10,8 +10,8 @@
   "scripts": {
     "test": "jest",
     "coverage": "jest --coverage",
-    "buildDev": "powershell.exe -Command \"& {if (Test-Path dist) {Remove-Item -Recurse -Force dist} }\" && webpack --mode development --config webpack.server.config.js && webpack --mode development --config webpack.dev.config.js",
-    "buildProd": "powershell.exe -Command \"& {if (Test-Path dist) {Remove-Item -Recurse -Force dist} }\" && webpack --mode production --config webpack.server.config.js && webpack --mode production --config webpack.prod.config.js",
+    "build:dev": "webpack --mode development --config webpack.server.config.js && webpack --config webpack.dev.js",
+    "build:prod": "webpack --mode production --config webpack.server.config.js && webpack --config webpack.prod.js",
     "start": "node ./dist/server.js"
   },
   "jest": {
@@ -24,13 +24,19 @@
   "author": "Andrew Pantuso",
   "license": "ISC",
   "dependencies": {
-    "express": "4.17.1"
+    "@material/drawer": "3.1.1",
+    "@material/elevation": "3.1.0",
+    "@material/theme": "3.1.0",
+    "@material/top-app-bar": "3.1.0",
+    "express": "4.17.1",
+    "webpack-merge": "4.2.2"
   },
   "devDependencies": {
     "@babel/core": "7.5.5",
     "@babel/preset-env": "7.5.5",
     "babel-eslint": "10.0.3",
     "babel-loader": "8.0.6",
+    "clean-webpack-plugin": "3.0.0",
     "css-loader": "3.2.0",
     "eslint": "6.3.0",
     "eslint-loader": "3.0.0",
@@ -48,7 +54,6 @@
     "postcss-plugin": "1.0.0",
     "pug": "2.0.4",
     "pug-loader": "2.4.0",
-    "sass": "1.22.10",
     "sass-loader": "8.0.0",
     "style-loader": "1.0.0",
     "sugarss": "2.0.0",

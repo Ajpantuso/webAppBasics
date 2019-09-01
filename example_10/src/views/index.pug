@@ -5,6 +5,30 @@ html(lang="en")
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
     meta(http-equiv="X-UA-Compatible" content="ie-edge")
     link(rel="stylesheet" href="./app.css")
-    title Title
+    link(rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons")
+    title WebAppBasics
   body
-    h1 Message
+    header(class="mdc-top-app-bar app-bar" id="app-bar")
+      div(class="mdc-top-app-bar__row")
+        section(class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start")
+          button(class="mdc-icon-button material-icons mdc-top-app-bar__navigation-icon") menu
+            span(class="mdc-top-app-bar__title") WebAppBasics
+        section(class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end")
+          button(class="mdc-icon-button material-icons mdc-top-app-bar__action-item--unbounded" aria-label="Download") file_download
+          button(class="mdc-icon-button material-icons mdc-top-app-bar__action-item--unbounded" aria-label="Print this page") print
+          button(class="mdc-icon-button material-icons mdc-top-app-bar__action-item--unbounded" aria-label="Bookmark this page") bookmark
+    aside(class="mdc-drawer mdc-drawer--dismissible mdc-top-app-bar--fixed-adjust")
+      div(class="mdc-drawer__content")
+        div(class="mdc-list")
+          a(class="mdc-list-item mdc-list-item--activated" href="#" aria-current="page")
+            i(class="material-icons mdc-list-item__graphic" aria-hidden="true") inbox
+            span(class="mdc-list-item__text") Inbox
+          a(class="mdc-list-item" href="#")
+            i(class="material-icons mdc-list-item__graphic" aria-hidden="true") send
+            span(class="mdc-list-item__text") Outgoing
+          a(class="mdc-list-item" href="#")
+            i(class="material-icons mdc-list-item__graphic" aria-hidden="true") drafts
+            span(class="mdc-list-item__text") Drafts
+    div(class="mdc-drawer-app-content mdc-top-app-bar--fixed-adjust")
+      main(class="main-content" id="main-content")
+        p Some text to look at!

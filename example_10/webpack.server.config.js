@@ -1,6 +1,8 @@
 const path = require('path')
 const webpack = require('webpack')
 const nodeExternals = require('webpack-node-externals')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+
 module.exports = (env, argv) => {
   const SERVER_PATH = (argv.mode === 'production') ?
     './src/server/server-prod.js' :
@@ -32,6 +34,9 @@ return ({
           }
         }
       ]
-    }
+    },
+    plugins: [
+      new CleanWebpackPlugin(),
+    ],
   })
 }
