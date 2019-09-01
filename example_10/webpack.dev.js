@@ -12,6 +12,7 @@ module.exports = merge(common, {
     publicPath: '/',
   },
   mode: 'development',
+  devtool: 'inline-source-map',
   module: {
     rules: [
       {
@@ -26,10 +27,25 @@ module.exports = merge(common, {
         }
       },
       {
-        test: /\.css$/,
+        test: /\.(sc|sa|c)ss$/i,
         use: [
-          'style-loader',
-          'css-loader'
+          {
+            loader: "style-loader",
+          },
+          {
+            loader: "css-loader",
+            options: {
+              url: false
+            }
+          },
+          {
+            loader: "sass-loader",
+            options: {
+              sassOptions: {
+                includePaths: ['./node_modules'],
+              }
+            }
+          }
         ]
       },
       {
@@ -40,5 +56,6 @@ module.exports = merge(common, {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.optimize.OccurrenceOrderPlugin(),
   ]
 });

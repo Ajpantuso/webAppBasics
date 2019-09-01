@@ -8,11 +8,10 @@ const HtmlWebPackPlugin = require('html-webpack-plugin')
     ]
   },
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, 'dist/public'),
     filename: 'bundle.js'
   },
   target: 'web',
-  devtool: 'source-map',
   module: {
     rules: [
       {
@@ -23,51 +22,12 @@ const HtmlWebPackPlugin = require('html-webpack-plugin')
         }
       },
       {
-        test: /\.html$/,
-        use: [
-          {
-            loader: "html-loader",
-          }
-        ]
-      },
-      {
         test: /\.pug$/,
         use: [
           {
             loader: "pug-loader",
           }
         ]
-      },
-      {
-        test: /\.s[ac]ss$/i,
-        use: [
-          {
-            loader: "file-loader",
-            options: {
-              name: "[name].css",
-            }
-          },
-          {
-            loader: "extract-loader"
-          },
-          {
-            loader: "css-loader?-url"
-          },
-          {
-            loader: "postcss-loader"
-          },
-          {
-            loader: "sass-loader",
-            options: {
-              sassOptions: {
-                includePaths: ['./node_modules'],
-              }
-            }
-          }
-        ]
-      },
-      {
-        test: /\.css$/,
       },
     ]
   },

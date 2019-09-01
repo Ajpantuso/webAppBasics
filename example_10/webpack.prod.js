@@ -1,17 +1,16 @@
-const path = require("path")
-const MiniCssExtractPlugin = require("mini-css-extract-plugin")
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin")
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const path = require("path");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const merge = require('webpack-merge');
-
 const common = require('./webpack.common.js');
 
 module.exports = merge(common, {
   output: {
-    path: path.join(__dirname, 'dist'),
     filename: 'bundle.js'
   },
   mode: 'production',
+  devtool: 'source-map',
   optimization: {
     minimizer: [
       new UglifyJsPlugin({
@@ -24,11 +23,7 @@ module.exports = merge(common, {
           },
         },
       }),
-      new OptimizeCSSAssetsPlugin({
-        cssProcessorPluginOptions: {
-          preset: ['default', { discardComments: { removeAll: true } }],
-        }
-      })
+      new OptimizeCSSAssetsPlugin({})
     ]
   },
   module: {
@@ -50,10 +45,26 @@ module.exports = merge(common, {
         use: [{loader: "url-loader"}]
       },
       {
-        // Loads CSS into a file when you import it via Javascript
-        // Rules are set in MiniCssExtractPlugin
-        test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader']
+        test: /\.(sc|sa|c)ss$/i,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
+          {
+            loader: "css-loader",
+            options: {
+              url: false
+            }
+          },
+          {
+            loader: "sass-loader",
+            options: {
+              sassOptions: {
+                includePaths: ['./node_modules'],
+              }
+            }
+          }
+        ]
       },
     ]
   },

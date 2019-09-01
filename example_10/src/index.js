@@ -1,4 +1,4 @@
-import './scss/app.scss';
+import './scss/main.scss';
 import './js/topBar.js';
 
 // Needed for Hot Module Replacement
