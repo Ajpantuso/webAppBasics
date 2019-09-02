@@ -4,18 +4,17 @@ html(lang="en")
     meta(charset="UTF-8")
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
     meta(http-equiv="X-UA-Compatible" content="ie-edge")
+    link(href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet")
     link(rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons")
     title WebAppBasics
-  body
+  body()
     header(class="mdc-top-app-bar app-bar" id="app-bar")
       div(class="mdc-top-app-bar__row")
         section(class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start")
           button(class="mdc-icon-button material-icons mdc-top-app-bar__navigation-icon") menu
             span(class="mdc-top-app-bar__title") WebAppBasics
         section(class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end")
-          button(class="mdc-icon-button material-icons mdc-top-app-bar__action-item--unbounded" aria-label="Download") file_download
-          button(class="mdc-icon-button material-icons mdc-top-app-bar__action-item--unbounded" aria-label="Print this page") print
-          button(class="mdc-icon-button material-icons mdc-top-app-bar__action-item--unbounded" aria-label="Bookmark this page") bookmark
+          a(class="mdc-icon-button material-icons mdc-top-app-bar__action-item--unbounded" target="_blank" rel="noopener noreferrer" href="https://github.com/ajpantuso/webAppBasics" aria-label="Source Code") code
     aside(class="mdc-drawer mdc-drawer--dismissible mdc-top-app-bar--fixed-adjust")
       div(class="mdc-drawer__content")
         div(class="mdc-list")
@@ -30,4 +29,4 @@ html(lang="en")
             span(class="mdc-list-item__text") Save
     div(class="mdc-drawer-app-content mdc-top-app-bar--fixed-adjust")
       main(class="main-content" id="main-content")
-        h2 Click the nav icon on the top left to get started
+        h3 Click the nav icon on the top-left to get started
