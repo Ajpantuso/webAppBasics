@@ -1,5 +1,5 @@
-$mdc-theme-primary: #0473b8;
-$mdc-theme-secondary: #04b8a3;
+$mdc-theme-primary: #041a83;
+$mdc-theme-secondary: #836e04;
 $mdc-theme-on-primary: #fff;
 $mdc-theme-on-secondary: #fff;
 
@@ -7,6 +7,7 @@ $mdc-theme-on-secondary: #fff;
 @import "@material/icon-button/mdc-icon-button";
 @import "@material/drawer/mdc-drawer";
 @import "@material/list/mdc-list";
+@import "@material/textfield/mdc-text-field";
 
 body {
   display: flex;
@@ -22,6 +23,12 @@ body {
 .main-content {
   overflow: auto;
   height: 100%;
+  h2 {
+    text-align: center;
+  }
+  .mdc-text-field--textarea {
+    padding-top: 1em;
+  }
 }
 
 .app-bar {

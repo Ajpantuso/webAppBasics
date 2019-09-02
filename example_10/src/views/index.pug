@@ -19,17 +19,15 @@ html(lang="en")
     aside(class="mdc-drawer mdc-drawer--dismissible mdc-top-app-bar--fixed-adjust")
       div(class="mdc-drawer__content")
         div(class="mdc-list")
-          a(class="mdc-list-item mdc-list-item--activated" href="#" aria-current="page")
-            i(class="material-icons mdc-list-item__graphic" aria-hidden="true") inbox
-            span(class="mdc-list-item__text") Inbox
-          a(class="mdc-list-item" href="#")
-            i(class="material-icons mdc-list-item__graphic" aria-hidden="true") send
-            span(class="mdc-list-item__text") Outgoing
-          a(class="mdc-list-item" href="#")
-            i(class="material-icons mdc-list-item__graphic" aria-hidden="true") drafts
-            span(class="mdc-list-item__text") Drafts
+          a(class="mdc-list-item" href="#" aria-current="page" id ="edit")
+            i(class="material-icons mdc-list-item__graphic" aria-hidden="true") create
+            span(class="mdc-list-item__text") Edit 
+          a(class="mdc-list-item" href="#" id="clear")
+            i(class="material-icons mdc-list-item__graphic" aria-hidden="true") clear
+            span(class="mdc-list-item__text") Clear 
+          a(class="mdc-list-item" href="#" id="save")
+            i(class="material-icons mdc-list-item__graphic" aria-hidden="true") save
+            span(class="mdc-list-item__text") Save
     div(class="mdc-drawer-app-content mdc-top-app-bar--fixed-adjust")
       main(class="main-content" id="main-content")
-        h1 Welcome to My App!
-        p We do lots of stuff here
-        p Let's list some of those things
+        h2 Click the nav icon on the top left to get started
