@@ -1,0 +1,11 @@
+div(class="mdc-card thought-card")
+  div(class="mdc-card__primary-action thought-card__primary-action" tabindex="0")
+    div(class="mdc-card__media")
+    div(class="thought-card__header")
+      h2(class="thought-card__title mdc-typography mdc-typography--headline6")= title
+      h3(class="thought-card__subtitle mdc-typography mdc-typography--subtitle2")= subTitle
+    div(class="thought-card__secondary mdc-typography mdc-typography--body2")= body
+  div(class="mdc-card__actions")
+    div(class="mdc-card__action-icons")
+      button(class="mdc-icon-button material-icons mdc-card__action mdc-card__action--icon--unbounded" title="More..." data-mdc-ripple-is-unbounded="true") expand_more
+      button(class="mdc-icon-button material-icons mdc-card__action mdc-card__action--icon--unbounded" title="Delete" data-mdc-ripple-is-unbounded="true") delete

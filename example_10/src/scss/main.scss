@@ -1,0 +1,98 @@
+$mdc-theme-primary: #041a83;
+$mdc-theme-secondary: #836e04;
+$mdc-theme-on-primary: #fff;
+$mdc-theme-on-secondary: #fff;
+
+@import "@material/top-app-bar/mdc-top-app-bar";
+@import "@material/icon-button/mdc-icon-button";
+@import "@material/drawer/mdc-drawer";
+@import "@material/list/mdc-list";
+@import "@material/textfield/mdc-text-field";
+@import "@material/typography/mdc-typography";
+@import "@material/animation/functions";
+@import "@material/button/mdc-button";
+
+body {
+  display: flex;
+  height: 100vh;
+  h1 {
+    @include mdc-typography(headline1)
+  }
+  h2 {
+    @include mdc-typography(headline2)
+  }
+}
+
+.mdc-top-app-bar__title {
+  font-family: 'Open Sans', sans-serif;
+}
+.mdc-drawer-app-content {
+  flex: auto;
+  overflow: auto;
+  position: relative;
+}
+
+.main-content {
+  overflow: auto;
+  height: 100%;
+  padding-left: 1em;
+  .mdc-text-field--textarea {
+    padding-top: 1em;
+    animation: mdc-animation-enter(fade-down, 350ms);
+  }
+}
+@keyframes fade-down {
+  from {
+    transform: translateY(-200px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.app-bar {
+  position: absolute;
+}
+
+.mdc-top-app-bar {
+  z-index: 7;
+}
+
+.save-form {
+  animation: mdc-animation-enter(fade-right, 350ms);
+}
+@keyframes fade-right {
+  from {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.thought-title,
+.thought-subtitle {
+  @include mdc-ripple-surface;
+  @include mdc-ripple-radius-bounded;
+  @include mdc-states;
+  display: block;
+  margin-top: 2em;
+  width: 300px;
+}
+
+.thought-save {
+  margin-top: 2em;
+  width: 140px;
+  margin-left: 20px;
+}
+
+.thought-cancel {
+  margin-top: 2em;
+  width: 140px;
+}

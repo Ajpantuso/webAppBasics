@@ -1,0 +1,22 @@
+@charset "UTF-8";
+html {
+  background-color: #fcf3d2;
+  color: #1f190a;
+  font-family: Verdana, sans-serif;
+  text-align: center;
+}
+h1 {
+  padding-bottom: 30px;
+}
+p {
+  font-weight: bold;
+  text-align: center;
+}
+div {
+  animation:blinkingText 3.0s infinite;
+}
+@keyframes blinkingText{
+    0%{     color: #1f190a;    }
+    50%{    color: transparent; }
+    100%{   color: #1f190a;    }
+}
