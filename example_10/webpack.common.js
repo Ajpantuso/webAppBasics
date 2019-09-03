@@ -35,5 +35,5 @@ const HtmlWebPackPlugin = require('html-webpack-plugin')
     new HtmlWebPackPlugin({
       template: './src/views/index.pug'
     })
-  ]
+  ],
 }
